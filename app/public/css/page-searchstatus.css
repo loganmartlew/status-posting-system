@@ -1,0 +1,25 @@
+form {
+  margin: auto;
+  margin-top: 2em;
+  padding: 2em;
+  max-width: 600px;
+}
+
+.searchbar {
+  display: flex;
+  gap: 0.3em;
+}
+
+.searchbar input {
+  flex-grow: 1;
+  min-width: 200px;
+}
+
+.searchbar button {
+  min-width: max-content;
+}
+
+form a {
+  display: block;
+  margin-top: 1em;
+}
