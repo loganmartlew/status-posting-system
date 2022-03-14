@@ -1,0 +1,37 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  gap: 2em;
+  padding-block: 0.5em;
+  border-bottom: thin solid var(--clr-grey);
+}
+
+header nav {
+  display: none;
+  align-items: center;
+  gap: 1em;
+}
+
+header .menubutton span {
+  font-size: 2rem;
+}
+
+@media screen and (min-width: 1260px) {
+  header nav {
+    display: flex;
+  }
+
+  header .menubutton {
+    display: none;
+  }
+}
+
+header .menu .modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+main {
+  margin: 2em var(--container-padding);
+}

@@ -1,0 +1,35 @@
+section.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-bottom: 2em;
+}
+
+@media screen and (min-width: 1035px) {
+  section.content {
+    flex-wrap: nowrap;
+  }
+}
+
+.studentinfo {
+  min-width: max-content;
+}
+
+.studentinfo .studentinfo-item {
+  font-weight: 200;
+}
+
+.studentinfo .studentinfo-item .label {
+  font-weight: 500;
+}
+
+.declaration {
+  flex-grow: 1;
+}
+
+section.links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+}

@@ -1,0 +1,45 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-white: #fff;
+  --clr-grey: rgb(75, 75, 75);
+  --clr-black: #000;
+
+  --clr-dark: rgb(27, 27, 31);
+
+  --clr-accent: hsl(170, 100%, 40%);
+  --clr-accent-light: hsl(170, 100%, 55%);
+
+  --font-clr: var(--clr-white);
+  --font-family: 'Poppins', sans-serif;
+
+  --container-padding: min(20%, 10em);
+}
+
+body {
+  background-color: var(--clr-dark);
+  color: var(--font-clr);
+  font-family: var(--font-family);
+}
+
+hr {
+  background-color: var(--clr-accent);
+  border: thin solid var(--clr-accent);
+}
+
+a {
+  color: var(--clr-accent);
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
