@@ -45,7 +45,7 @@
       <h2>Post a Status</h2>
       <hr />
       <?php include_once('regex-patterns.php') ?>
-      <form class="card">
+      <form action="poststatus.php" method="POST" class="card">
         <div class="form-field">
           <label for="statuscode">Status Code (required):</label>
           <input
@@ -99,8 +99,9 @@
         </div>
 
         <div class="form-field">
+          <?php include_once("../../dateconfig.php") ?>
           <label for="date">Date:</label>
-          <input type="date" name="date" id="date" value="2022-01-01" />
+          <input type="date" name="date" id="date" value="<?php echo date("Y-m-d") ?>" />
         </div>
 
         <div class="form-field">
@@ -131,7 +132,7 @@
           >
             Post
           </button>
-          <button type="button" class="btn btn-outline resetbtn">Reset</button>
+          <button type="reset" class="btn btn-outline resetbtn">Reset</button>
         </div>
       </form>
     </main>
