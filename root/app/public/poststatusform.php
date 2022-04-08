@@ -44,6 +44,7 @@
     <main>
       <h2>Post a Status</h2>
       <hr />
+      <?php include_once('regex-patterns.php') ?>
       <form class="card">
         <div class="form-field">
           <label for="statuscode">Status Code (required):</label>
@@ -52,6 +53,8 @@
             type="text"
             name="statuscode"
             id="statuscode"
+            pattern="<?php echo $STATUS_CODE_REGEXP_HTML; ?>"
+            title="<?php echo $STATUS_CODE_DESC; ?>"
             required
           />
         </div>
@@ -63,6 +66,8 @@
             type="text"
             name="status"
             id="status"
+            pattern="<?php echo $STATUS_REGEXP_HTML; ?>"
+            title="<?php echo $STATUS_DESC; ?>"
             required
           />
         </div>
