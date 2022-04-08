@@ -45,7 +45,7 @@
       <h2>Post a Status</h2>
       <hr />
       <?php require_once('util/regex-patterns.php') ?>
-      <form action="poststatus.php" method="POST" class="card">
+      <form action="poststatusprocess.php" method="POST" class="card">
         <div class="form-field">
           <label for="statuscode">Status Code (required):</label>
           <input
@@ -73,26 +73,20 @@
         </div>
 
         <div class="form-field">
-          <label for="share">Visibility:</label>
+          <label>Visibility:</label>
           <div class="radio-group">
             <div class="radio-item">
-              <input
-                type="radio"
-                name="share"
-                id="public"
-                value="public"
-                checked
-              />
+              <input type="radio" name="visibility" id="public" value="public" checked />
               <label for="public">Public</label>
             </div>
 
             <div class="radio-item">
-              <input type="radio" name="share" id="friends" value="friends" />
+              <input type="radio" name="visibility" id="friends" value="friends" />
               <label for="friends">Friends</label>
             </div>
 
             <div class="radio-item">
-              <input type="radio" name="share" id="me" value="me" />
+              <input type="radio" name="visibility" id="me" value="me" />
               <label for="me">Only me</label>
             </div>
           </div>

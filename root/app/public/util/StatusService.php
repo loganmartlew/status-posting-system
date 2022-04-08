@@ -14,7 +14,6 @@
     }
 
     function init_tables() {
-      echo "1";
       $statusStmt = @$this->conn->prepare("CREATE TABLE ".self::$statusTable." (
         statuscode VARCHAR(5) PRIMARY KEY,
         status VARCHAR(200),
@@ -44,6 +43,31 @@
         ('share')
       ");
       $insertPermStmt->execute();
+    }
+
+    static function process_values($values) {
+      $values = array(
+        "statuscode" => $values['statuscode'],
+        "status" => $values['status'],
+        "visibility" => $values['visibility'],
+        "date" => date("Y-m-d", $values['date']),
+        "permissions" => array(
+          "like" => ($values['like'] ? true : false),
+          "comment" => ($values['comment'] ? true : false),
+          "share" => ($values['share'] ? true : false)
+        )
+      );
+      return $values;
+    }
+
+    static function status_is_valid($values) {
+      require_once("regex-patterns.php");
+
+      if (!$values['statuscode']) return false;
+      if (preg_match($values['statuscode'], $STATUS_CODE_REGEXP) < 1) return false;
+
+      if (!$values['status']) return false;
+      if (preg_match($values['status'], $STATUS_REGEXP) < 1) return false;
     }
   }
 ?>
