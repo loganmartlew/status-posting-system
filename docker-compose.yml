@@ -24,5 +24,11 @@ services:
       - mysqldata:/var/lib/mysql
     ports:
       - 3306:3306
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
 volumes:
   mysqldata: {}
