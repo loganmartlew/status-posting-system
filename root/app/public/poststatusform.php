@@ -44,8 +44,13 @@
     <main>
       <h2>Post a Status</h2>
       <hr />
+<<<<<<< HEAD:app/public/poststatusform.php
       <?php include 'regex-patterns.php' ?>
       <form class="card">
+=======
+      <?php require_once('util/regex-patterns.php') ?>
+      <form action="poststatusprocess.php" method="POST" class="card">
+>>>>>>> e2dedf40d3aee19bab35e71ef30d02af412954c0:root/app/public/poststatusform.php
         <div class="form-field">
           <label for="statuscode">Status Code (required):</label>
           <input
@@ -73,34 +78,29 @@
         </div>
 
         <div class="form-field">
-          <label for="share">Visibility:</label>
+          <label>Visibility:</label>
           <div class="radio-group">
             <div class="radio-item">
-              <input
-                type="radio"
-                name="share"
-                id="public"
-                value="public"
-                checked
-              />
+              <input type="radio" name="visibility" id="public" value="public" checked />
               <label for="public">Public</label>
             </div>
 
             <div class="radio-item">
-              <input type="radio" name="share" id="friends" value="friends" />
+              <input type="radio" name="visibility" id="friends" value="friends" />
               <label for="friends">Friends</label>
             </div>
 
             <div class="radio-item">
-              <input type="radio" name="share" id="me" value="me" />
+              <input type="radio" name="visibility" id="me" value="me" />
               <label for="me">Only me</label>
             </div>
           </div>
         </div>
 
         <div class="form-field">
+          <?php require_once("util/dateconfig.php") ?>
           <label for="date">Date:</label>
-          <input type="date" name="date" id="date" value="2022-01-01" />
+          <input type="date" name="date" id="date" value="<?php echo date("Y-m-d") ?>" />
         </div>
 
         <div class="form-field">
@@ -131,7 +131,7 @@
           >
             Post
           </button>
-          <button type="button" class="btn btn-outline resetbtn">Reset</button>
+          <button type="reset" class="btn btn-outline resetbtn">Reset</button>
         </div>
       </form>
     </main>
