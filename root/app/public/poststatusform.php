@@ -44,13 +44,8 @@
     <main>
       <h2>Post a Status</h2>
       <hr />
-<<<<<<< HEAD:app/public/poststatusform.php
-      <?php include 'regex-patterns.php' ?>
-      <form class="card">
-=======
       <?php require_once('util/regex-patterns.php') ?>
       <form action="poststatusprocess.php" method="POST" class="card">
->>>>>>> e2dedf40d3aee19bab35e71ef30d02af412954c0:root/app/public/poststatusform.php
         <div class="form-field">
           <label for="statuscode">Status Code (required):</label>
           <input
