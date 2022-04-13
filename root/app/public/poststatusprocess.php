@@ -9,14 +9,18 @@
       <?php require_once("util/headercomponent.php") ?>
       <main>
         <?php
+          // Initialize status service
           require_once("util/StatusService.php");
           $status_service = new StatusService();
           
+          // Convert post request values to usable data
           $values = StatusService::process_values($_POST);
 
+          // Check validity of input data
           list($valid, $errors) = StatusService::status_is_valid($values);
 
           if (!$valid) {
+            // List errors coming from validation method
             echo "<p><strong>Provided data was not valid.</strong></p>";
             
             foreach ($errors as $error) {
@@ -24,6 +28,7 @@
               echo "<p>".$field.": ".$msg."</p>";
             }
           } else {
+            // Create new status, print success or error message
             $msg = $status_service->post_status($values);
             echo "<p>".$msg."</p>";
           }

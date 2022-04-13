@@ -1,4 +1,6 @@
 <?php
+  // Regex Patterns used to validate form inputs
+
   $STATUS_CODE_REGEXP = "/^S\d{4}$/";
   // Remove slashes from start and end of string for HTML pattern attribute
   $STATUS_CODE_REGEXP_HTML = substr($STATUS_CODE_REGEXP, 1, -1); 

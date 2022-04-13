@@ -8,10 +8,16 @@
   <body>
     <?php require_once("util/headercomponent.php") ?>
     <main>
+
       <h2>Post a Status</h2>
       <hr />
+
+      <!-- Import RegEx patterns -->
       <?php require_once('util/regex-patterns.php') ?>
+
       <form action="poststatusprocess.php" method="POST" class="card">
+
+        <!-- Status code input -->
         <div class="form-field">
           <label for="statuscode">Status Code (required):</label>
           <input
@@ -25,6 +31,7 @@
           />
         </div>
 
+        <!-- Status input -->
         <div class="form-field">
           <label for="status">Status (required):</label>
           <input
@@ -38,6 +45,7 @@
           />
         </div>
 
+        <!-- Visibility/Share Radio buttons -->
         <div class="form-field">
           <label>Visibility:</label>
           <div class="radio-group">
@@ -58,12 +66,14 @@
           </div>
         </div>
 
+        <!-- Date input (defaults to server date) -->
         <div class="form-field">
           <?php require_once("util/dateconfig.php") ?>
           <label for="date">Date:</label>
           <input type="date" name="date" id="date" value="<?php echo date("Y-m-d") ?>" />
         </div>
 
+        <!-- Checkboxes for status permissions -->
         <div class="form-field">
           <label for="permission">Permissions:</label>
           <div class="checkbox-group">
@@ -84,6 +94,7 @@
           </div>
         </div>
 
+        <!-- Submit and Reset buttons -->
         <div>
           <button
             type="submit"
