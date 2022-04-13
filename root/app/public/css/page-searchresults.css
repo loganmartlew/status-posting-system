@@ -1,0 +1,32 @@
+hr {
+  margin-bottom: 2rem;
+}
+
+.search-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.search-cards .card {
+  max-width: 350px;
+}
+
+.search-cards .card ul {
+  margin-left: 1.3em;
+}
+
+.search-cards .card p,
+.search-cards .card li {
+  font-size: 0.8rem;
+}
+
+.search-cards .card p.status {
+  font-size: 1rem;
+}
+
+.links {
+  margin: 1rem 0;
+  display: flex;
+  gap: 2em;
+}

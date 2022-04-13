@@ -10,7 +10,7 @@
     <main>
       <h2>Search for a Status</h2>
       <hr />
-      <form>
+      <form action="searchstatusprocess.php" method="GET">
         <label for="search">Status:</label>
         <div class="searchbar">
           <input class="textinput" type="text" name="search" id="search" />

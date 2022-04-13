@@ -177,5 +177,41 @@
 
       return "Status posted.";
     }
+
+    function search_status($q) {
+      $q = "%$q%";
+
+      $statusStmt = $this->conn->prepare("SELECT * FROM ".self::$statusTable." WHERE status LIKE ?");
+    
+      $statusStmt->bind_param("s", $q);
+      $statusStmt->execute();
+      $statusStmt->bind_result($statuscode, $status, $visibility, $date);
+      $statusStmt->store_result();
+
+      $statuses = array();
+
+      while ($statusStmt->fetch()) {
+        $statuses[] = ["statuscode" => $statuscode, "status" => $status, "visibility" => $visibility, "date" => $date];
+      }
+
+      if (count($statuses) < 1) return false;
+
+      $permStmt = $this->conn->prepare("SELECT p.name FROM ".self::$permTable." p, ".self::$joinTable." sp WHERE p.id = sp.permission_id AND sp.statuscode = ?");
+
+      foreach ($statuses as &$status) {
+        $status['permissions'] = array();
+
+        $permStmt->bind_param("s", $status['statuscode']);
+        $permStmt->execute();
+        $permStmt->bind_result($permission);
+        $permStmt->store_result();
+
+        while ($permStmt->fetch()) {
+          $status['permissions'][] = $permission;
+        }
+      }
+
+      return $statuses;
+    }
   }
 ?>
