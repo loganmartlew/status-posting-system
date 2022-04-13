@@ -37,6 +37,11 @@ a {
   color: var(--clr-accent);
 }
 
+a.title {
+  color: var(--clr-white);
+  text-decoration: none;
+}
+
 button {
   background: none;
   border: none;

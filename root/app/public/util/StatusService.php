@@ -43,7 +43,7 @@
       $statusStmt = @$this->conn->prepare("CREATE TABLE ".self::$statusTable." (
         statuscode VARCHAR(5) PRIMARY KEY,
         status VARCHAR(200),
-        share VARCHAR(1),
+        share VARCHAR(7),
         date DATE
       )");
       $statusStmt->execute();
@@ -82,13 +82,14 @@
         "statuscode" => $values['statuscode'],
         "status" => $values['status'],
         "visibility" => $values['visibility'],
-        "date" => date("Y-m-d", $values['date']),
+        "date" => $values['date'],
         "permissions" => array(
           "like" => ($values['like'] ? true : false),
           "comment" => ($values['comment'] ? true : false),
           "share" => ($values['share'] ? true : false)
         )
       );
+
       return $values;
     }
 
@@ -96,6 +97,7 @@
       $errors = array();
 
       require_once("regex-patterns.php");
+      require_once("validate-date.php");
 
       if (!$values['statuscode']) {
         $errors[] = ["statuscode", "Status code cannot be empty."];
@@ -116,7 +118,10 @@
       }
 
       if (!$values['date']) {
-        $errors[] = ["date", "Wrong format. Date cannot be empty and must be in format 'yyyy-mm-dd'."];
+        $errors[] = ["date", "Wrong format. Date cannot be empty."];
+      }
+      if (!date_is_valid($values['date'])) {
+        $errors[] = ["date", "Wrong format. Date must be in format 'yyyy-mm-dd'."];
       }
 
       $valid = (count($errors) > 0 ? false : true);
@@ -125,7 +130,52 @@
     }
 
     function post_status($values) {
-      
+      $query = "SELECT * FROM ".self::$statusTable." WHERE statuscode = '".$values['statuscode']."'";
+      $result = $this->conn->query($query);
+
+      if ($result->num_rows >= 1) {
+        return "Status code already exists. The status code must be unique. Please try another code.";
+      };
+
+      $stmt = $this->conn->prepare("INSERT INTO ".self::$statusTable." (
+        statuscode,
+        status,
+        share,
+        date
+      ) VALUES (?, ?, ?, ?)");
+
+      $stmt->bind_param("ssss", $values['statuscode'], $values['status'], $values['visibility'], $values['date']);
+      $stmt->execute();
+
+      if ($stmt->error) {
+        return "An error occurred. Please try again. Error: ".$stmt->error;
+      }
+
+      foreach ($values['permissions'] as $permission => $value) {
+        if (!$value) continue;
+
+        $query = "SELECT id FROM ".self::$permTable." WHERE name = '".$permission."'";
+        $result = $this->conn->query($query);
+
+        if ($result->num_rows < 1) {
+          return "Permission ".$permission." does not exist.";
+        }
+
+        $permission_id = $result->fetch_assoc()['id'];
+
+        $stmt = $this->conn->prepare("INSERT INTO ".self::$joinTable." (
+          statuscode,
+          permission_id
+        ) VALUES (?, ?)");
+        $stmt->bind_param("si", $values['statuscode'], $permission_id);
+        $stmt->execute();
+
+        if ($stmt->error) {
+          return "An error occurred. Please try again. Error: ".$stmt->error;
+        }
+      }
+
+      return "Status posted.";
     }
   }
 ?>
