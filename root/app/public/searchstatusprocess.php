@@ -24,7 +24,8 @@
           require_once("util/StatusService.php");
           $status_service = new StatusService();
 
-          $q = $_GET['Search'];
+          // Trim whitespace from input, string with only spaces is not allowed
+          $q = trim($_GET['Search']);
 
           // Ensure search term is not empty
           if (!$q) die("<p>Search input cannot be empty. Try another search term.</p>".$links);
