@@ -32,7 +32,7 @@
       <section class="links">
         <a href="http://tkj2567.cmslamp14.aut.ac.nz/assign1/poststatusform.php" class="btn btn-primary">Post a new status</a>
         <a href="http://tkj2567.cmslamp14.aut.ac.nz/assign1/searchstatusform.php" class="btn btn-outline">Search status</a>
-        <a href="#">About this assignment</a>
+        <a href="http://tkj2567.cmslamp14.aut.ac.nz/assign1/about.php">About this assignment</a>
       </section>
     </main>
   </body>
