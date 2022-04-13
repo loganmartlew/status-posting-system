@@ -94,6 +94,8 @@
           </button>
           <button type="reset" class="btn btn-outline resetbtn">Reset</button>
         </div>
+        
+        <a href="http://tkj2567.cmslamp14.aut.ac.nz/assign1">Return to Home Page</a>
       </form>
     </main>
   </body>

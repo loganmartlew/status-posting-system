@@ -48,3 +48,7 @@ button {
   color: inherit;
   cursor: pointer;
 }
+
+p {
+  margin-bottom: 1em;
+}
