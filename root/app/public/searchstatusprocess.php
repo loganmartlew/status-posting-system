@@ -14,7 +14,7 @@
         <?php
           $links = "
           <div class=\"links\">
-            <a href=\"http://tkj2567.cmslamp14.aut.ac.nz/assign1/searchstatusform.php\">Search for another status</a>
+            <a href=\"http://tkj2567.cmslamp14.aut.ac.nz/assign1/searchstatusform.html\">Search for another status</a>
             <a href=\"http://tkj2567.cmslamp14.aut.ac.nz/assign1\">Return to Home Page</a>
           </div>
           ";
